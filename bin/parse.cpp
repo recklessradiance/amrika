@@ -125,7 +125,7 @@ void Parser::statement()
             // expect an expression
             stringstream s;
             s << "printf(\"%";
-            s << ".7f\\n\", (float)(";
+            s << ".7lf\\n\", (double)(";
             emitter.emit(s.str());
             expression();
             emitter.emitLine("));");
@@ -175,7 +175,7 @@ void Parser::statement()
         {
             symbols.insert(curToken.tokenText);
             stringstream s;
-            s << "float ";
+            s << "double ";
             s << curToken.tokenText;
             s << ";";
             emitter.headerLine(s.str());
@@ -195,13 +195,13 @@ void Parser::statement()
         {
             symbols.insert(curToken.tokenText);
             stringstream s;
-            s << "float ";
+            s << "double ";
             s << curToken.tokenText;
             s << ";";
             emitter.headerLine(s.str());
         }
         emitter.emit("if(0 == scanf(\"%");
-        emitter.emit("f\", &");
+        emitter.emit("lf\", &");
         emitter.emit(curToken.tokenText);
         emitter.emitLine(")) {");
 
