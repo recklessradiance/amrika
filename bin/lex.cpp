@@ -8,9 +8,7 @@ using namespace std;
 string ctos(char ch)
 {
     // function to convert a charater to a string representation
-    stringstream s;
-    s << ch;
-    return s.str();
+    return string(1, ch);
 }
 
 Lexer::Lexer(string input)
