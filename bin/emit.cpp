@@ -3,29 +3,32 @@
 #include <iostream>
 #include "emit.hpp"
 
-Emitter::Emitter(string path)
+Emitter::Emitter(const string &path)
 {
     fullPath = path;
     header = "";
     code = "";
+    code.reserve(4096);
 }
 
-void Emitter::emit(string codepiece)
+void Emitter::emit(const string &codepiece)
 {
     // appends the current string to the code that is to be emmited
     code += codepiece;
 }
 
-void Emitter::emitLine(string codepiece)
+void Emitter::emitLine(const string &codepiece)
 {
     // appends the current string to the code that is to be emmited ending with a newline
-    code += codepiece + '\n';
+    code += codepiece;
+    code += '\n';
 }
 
-void Emitter::headerLine(string codepiece)
+void Emitter::headerLine(const string &codepiece)
 {
     // appends the current string to the header part of the output code
-    header += codepiece + '\n';
+    header += codepiece;
+    header += '\n';
 }
 
 void Emitter::writeFile()

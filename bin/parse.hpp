@@ -28,7 +28,7 @@ public:
     // advances the current token
     void nextToken();
 
-    void abort(string message);
+    void abort(const string &message);
 
     // Production rules
 

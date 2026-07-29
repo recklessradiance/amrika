@@ -11,7 +11,7 @@ string ctos(char ch)
     return string(1, ch);
 }
 
-Lexer::Lexer(string input)
+Lexer::Lexer(const string &input)
 {
     // sets the keywords for the language
     keywords.insert({"rashey", rashey});
@@ -52,7 +52,7 @@ char Lexer::peek()
     }
     return source[curPos + 1];
 }
-void Lexer::abort(string message)
+void Lexer::abort(const string &message)
 {
     // print error message and exit
     cout << "Lexing error. " << message << endl;

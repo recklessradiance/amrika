@@ -14,13 +14,13 @@ public:
         header = "";
         code = "";
     }
-    Emitter(string path);
+    Emitter(const string &path);
 
-    void emit(string codepiece);
+    void emit(const string &codepiece);
 
-    void emitLine(string codepiece);
+    void emitLine(const string &codepiece);
 
-    void headerLine(string codepiece);
+    void headerLine(const string &codepiece);
 
     void writeFile();
 };

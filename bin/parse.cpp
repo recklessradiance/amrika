@@ -75,7 +75,7 @@ void Parser::nextToken()
     peekToken = lexer.getToken();
 }
 
-void Parser::abort(string message)
+void Parser::abort(const string &message)
 {
     cout << "Error. " << message << endl;
     exit(0);

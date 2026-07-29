@@ -41,7 +41,7 @@ public:
     string tokenText;
     TokenType tokenKind;
     Token() {}
-    Token(string tText, TokenType tKind)
+    Token(const string &tText, TokenType tKind)
     {
         tokenText = tText;
         tokenKind = tKind;
@@ -59,7 +59,7 @@ public:
     Lexer()
     {
     }
-    Lexer(string input);
+    Lexer(const string &input);
 
     // process next character
     void nextChar();
@@ -68,7 +68,7 @@ public:
     char peek();
 
     // print error message and exit
-    void abort(string message);
+    void abort(const string &message);
 
     // skip whitespace except newlines
     void skipWhiteSpace();
