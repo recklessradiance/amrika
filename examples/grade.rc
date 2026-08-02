@@ -1,0 +1,25 @@
+# grade: classify marks using chudu-aithe, lekapothe, and comparisons
+# enter marks, or a negative number to mark absent
+theesko marks
+
+chudu marks < 0 aithe
+    rashey "absent"
+.
+
+chudu marks >= 90 aithe
+    rashey "A"
+.
+
+chudu marks >= 70 aithe
+    rashey "B"
+lekapothe
+    rashey "C"
+.
+
+anuko x = -5
+chudu x != marks aithe
+    rashey "x is not your marks"
+.
+chudu x == -5 aithe
+    rashey "minus five"
+.
