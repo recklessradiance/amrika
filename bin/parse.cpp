@@ -21,6 +21,7 @@ Parser::Parser(Lexer tlexer, Emitter temitter)
     tokens.insert({anuko, "anuko"});
     tokens.insert({chudu, "chudu"});
     tokens.insert({lekapothe, "lekapothe"});
+    tokens.insert({kaakapothe, "kaakapothe"});
 
     tokens.insert({EQ, "EQ"});
     tokens.insert({PLUS, "PLUS"});
@@ -142,9 +143,23 @@ void Parser::statement()
         match(TokenType::aithe);
         newline();
         emitter.emitLine("){");
-        while (!checkToken(TokenType::DOT) && !checkToken(TokenType::lekapothe))
+        while (!checkToken(TokenType::DOT) && !checkToken(TokenType::lekapothe) && !checkToken(TokenType::kaakapothe))
         {
             statement();
+        }
+
+        while (checkToken(TokenType::kaakapothe))
+        {
+            nextToken();
+            emitter.emit("}else if(");
+            comparison();
+            match(TokenType::aithe);
+            newline();
+            emitter.emitLine("){");
+            while (!checkToken(TokenType::DOT) && !checkToken(TokenType::lekapothe) && !checkToken(TokenType::kaakapothe))
+            {
+                statement();
+            }
         }
 
         if (checkToken(TokenType::lekapothe))

@@ -19,6 +19,7 @@ enum TokenType
     anuko = 106,
     chudu = 107,
     lekapothe = 108,
+    kaakapothe = 109,
 
     EQ = 201,
     PLUS = 202,

@@ -21,6 +21,7 @@ The idea crept into my otherwise beautiful mind, when I came across a paper that
 - chudu		:	See
 - aithe		:	If
 - lekapothe	:	Else
+- kaakapothe	:	Else if
 - okavela	:	In case
 - ainappudu	:	While
 - anuko		:	Assume
@@ -45,7 +46,7 @@ Keywords and operators are enclosed in double quotations.
 program     ::=		{statement}
 
 statement   ::=		"raayi" (expression | string) nl
-		|	"chudu" comparison "aithe" nl {statement} nl ["lekapothe" nl {statement} nl] "." nl
+		|	"chudu" comparison "aithe" nl {statement} nl { "kaakapothe" comparison "aithe" nl {statement} nl } ["lekapothe" nl {statement} nl] "." nl
 		|	"okavela" comparision "ainappudu" nl {statement} nl "." nl
 		|	"anuko" ident "=" expression nl
 		|	"theesko" ident nl
@@ -67,7 +68,7 @@ nl	    ::=		'\n'+
 The concocted language currently supports the following:
 - Numbers that are floating point by default.
 - Basic arithmetic
-- chudu - aithe block which is analogous to a if block. Optionally end with lekapothe for the else branch.
+- chudu - aithe block which is analogous to a if block. Optionally chain with kaakapothe for else-if branches, and end with lekapothe for the else branch.
 - anuko, and theesko statements to define variables and read data from user.
 - okavela - ainappudu loop that closely resembles a while loop.
 - Printing text/ numbers using rashey.
