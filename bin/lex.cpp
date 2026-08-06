@@ -33,7 +33,16 @@ Lexer::Lexer(const string &input)
 
 void Lexer::nextChar()
 {
-    // process next character
+    // process next character, updating line and column position
+    if (curChar == '\n')
+    {
+        curLine += 1;
+        curCol = 0;
+    }
+    else
+    {
+        curCol += 1;
+    }
     curPos += 1;
     if (curPos >= source.size())
     {
@@ -57,7 +66,7 @@ char Lexer::peek()
 void Lexer::abort(const string &message)
 {
     // print error message and exit
-    cout << "Lexing error. " << message << endl;
+    cout << "Lexing error. line " << curLine << ", char " << curCol << ": " << message << endl;
     exit(0);
 }
 
@@ -87,6 +96,8 @@ Token Lexer::getToken()
     // return the next token
     skipWhiteSpace();
     skipComment();
+    int startLine = curLine;
+    int startCol = curCol;
     Token token;
     // Check the first character of this token to decide what it is.
     // If it is a multiple character operator, number, identifier, or a keyword then we will process the rest.
@@ -252,6 +263,8 @@ Token Lexer::getToken()
         s << "ee thelvani token endho mari: \"" << curChar << "\"";
         abort(s.str());
     }
+    token.tokenLine = startLine;
+    token.tokenCol = startCol;
     nextChar();
     return token;
 }

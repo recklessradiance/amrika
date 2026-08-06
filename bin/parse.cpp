@@ -79,7 +79,7 @@ void Parser::nextToken()
 
 void Parser::abort(const string &message)
 {
-    cout << "Error. " << message << endl;
+    cout << "Error. line " << curToken.tokenLine << ", char " << curToken.tokenCol << ": " << message << endl;
     exit(0);
 }
 

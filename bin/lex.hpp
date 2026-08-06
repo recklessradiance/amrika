@@ -42,6 +42,8 @@ class Token
 public:
     string tokenText;
     TokenType tokenKind;
+    int tokenLine = 0;
+    int tokenCol = 0;
     Token() {}
     Token(const string &tText, TokenType tKind)
     {
@@ -56,6 +58,8 @@ public:
     string source;
     char curChar;
     int curPos;
+    int curLine = 1;
+    int curCol = 0;
     map<string, TokenType> keywords;
 
     Lexer()
