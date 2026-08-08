@@ -22,6 +22,9 @@ Parser::Parser(Lexer tlexer, Emitter temitter)
     tokens.insert({chudu, "chudu"});
     tokens.insert({lekapothe, "lekapothe"});
     tokens.insert({kaakapothe, "kaakapothe"});
+    tokens.insert({inka, "inka"});
+    tokens.insert({leka, "leka"});
+    tokens.insert({kadhu, "kadhu"});
 
     tokens.insert({EQ, "EQ"});
     tokens.insert({PLUS, "PLUS"});
@@ -138,7 +141,7 @@ void Parser::statement()
     {
         nextToken();
         emitter.emit("if(");
-        comparison();
+        logical();
 
         match(TokenType::aithe);
         newline();
@@ -181,7 +184,7 @@ void Parser::statement()
     {
         nextToken();
         emitter.emit("while(");
-        comparison();
+        logical();
 
         match(TokenType::ainappudu);
         newline();
@@ -268,6 +271,44 @@ void Parser::newline()
 void Parser::dot()
 {
     match(TokenType::DOT);
+}
+
+// logical ::= logicalAnd {"leka" logicalAnd}
+void Parser::logical()
+{
+    logicalAnd();
+    while (checkToken(TokenType::leka))
+    {
+        nextToken();
+        emitter.emit(" || ");
+        logicalAnd();
+    }
+}
+
+// logicalAnd ::= logicalNot {"inka" logicalNot}
+void Parser::logicalAnd()
+{
+    logicalNot();
+    while (checkToken(TokenType::inka))
+    {
+        nextToken();
+        emitter.emit(" && ");
+        logicalNot();
+    }
+}
+
+// logicalNot ::= ["kadhu"] comparison
+void Parser::logicalNot()
+{
+    if (checkToken(TokenType::kadhu))
+    {
+        nextToken();
+        emitter.emit("!(");
+        comparison();
+        emitter.emit(")");
+        return;
+    }
+    comparison();
 }
 
 void Parser::comparison()

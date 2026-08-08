@@ -50,6 +50,15 @@ public:
     // comparison
     void comparison();
 
+    // logical (leka level)
+    void logical();
+
+    // logical and (inka level)
+    void logicalAnd();
+
+    // logical not (kadhu)
+    void logicalNot();
+
     // check if comparison operator
     bool isComparisonOperator();
 

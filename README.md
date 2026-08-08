@@ -22,6 +22,9 @@ The idea crept into my otherwise beautiful mind, when I came across a paper that
 - aithe		:	If
 - lekapothe	:	Else
 - kaakapothe	:	Else if
+- inka		:	And
+- leka		:	Or
+- kadhu		:	Not
 - okavela	:	In case
 - ainappudu	:	While
 - anuko		:	Assume
@@ -46,12 +49,18 @@ Keywords and operators are enclosed in double quotations.
 program     ::=		{statement}
 
 statement   ::=		"raayi" (expression | string) nl
-		|	"chudu" comparison "aithe" nl {statement} nl { "kaakapothe" comparison "aithe" nl {statement} nl } ["lekapothe" nl {statement} nl] "." nl
-		|	"okavela" comparision "ainappudu" nl {statement} nl "." nl
+		|	"chudu" logical "aithe" nl {statement} nl { "kaakapothe" logical "aithe" nl {statement} nl } ["lekapothe" nl {statement} nl] "." nl
+		|	"okavela" logical "ainappudu" nl {statement} nl "." nl
 		|	"anuko" ident "=" expression nl
 		|	"theesko" ident nl
 
 comparison  ::=		expression (("==" | "!=" | ">" | ">=" | "<" | "<=") expression)+
+
+logical     ::=		logicalAnd { "leka" logicalAnd }
+
+logicalAnd  ::=		logicalNot { "inka" logicalNot }
+
+logicalNot  ::=		["kadhu"] comparison
 
 expression  ::=		term {( "-" | "+" ) term}
 

@@ -23,6 +23,9 @@ Lexer::Lexer(const string &input)
     keywords.insert({"chudu", chudu});
     keywords.insert({"lekapothe", lekapothe});
     keywords.insert({"kaakapothe", kaakapothe});
+    keywords.insert({"inka", inka});
+    keywords.insert({"leka", leka});
+    keywords.insert({"kadhu", kadhu});
 
     // sets pointers to the input file for the lexer to read input file character by character
     source = input + "\n";
