@@ -60,7 +60,7 @@ logical     ::=		logicalAnd { "leka" logicalAnd }
 
 logicalAnd  ::=		logicalNot { "inka" logicalNot }
 
-logicalNot  ::=		["kadhu"] comparison
+logicalNot  ::=		["kadhu"] comparison | "(" logical ")"
 
 expression  ::=		term {( "-" | "+" ) term}
 
@@ -68,7 +68,7 @@ term	    ::=		unary {( "/" | "*") unary}
 
 unary	    ::=		["+" | "-"] primary
 
-primary     ::=		number | ident
+primary     ::=		number | ident | "(" expression ")"
 
 nl	    ::=		'\n'+
 

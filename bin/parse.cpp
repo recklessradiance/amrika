@@ -38,6 +38,8 @@ Parser::Parser(Lexer tlexer, Emitter temitter)
     tokens.insert({GT, "GT"});
     tokens.insert({GTEQ, "GTEQ"});
     tokens.insert({DOT, "DOT"});
+    tokens.insert({LPAREN, "LPAREN"});
+    tokens.insert({RPAREN, "RPAREN"});
 
     lexer = tlexer;
     emitter = temitter;
@@ -297,7 +299,7 @@ void Parser::logicalAnd()
     }
 }
 
-// logicalNot ::= ["kadhu"] comparison
+// logicalNot ::= ["kadhu"] comparison | "(" logical ")"
 void Parser::logicalNot()
 {
     if (checkToken(TokenType::kadhu))
@@ -305,6 +307,15 @@ void Parser::logicalNot()
         nextToken();
         emitter.emit("!(");
         comparison();
+        emitter.emit(")");
+        return;
+    }
+    if (checkToken(TokenType::LPAREN))
+    {
+        nextToken();
+        emitter.emit("(");
+        logical();
+        match(TokenType::RPAREN);
         emitter.emit(")");
         return;
     }
@@ -395,6 +406,14 @@ void Parser::primary()
         }
         emitter.emit(curToken.tokenText);
         nextToken();
+    }
+    else if (checkToken(TokenType::LPAREN))
+    {
+        nextToken();
+        emitter.emit("(");
+        expression();
+        match(TokenType::RPAREN);
+        emitter.emit(")");
     }
     else
     {

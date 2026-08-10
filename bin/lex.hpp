@@ -35,7 +35,9 @@ enum TokenType
     LTEQ = 209,
     GT = 210,
     GTEQ = 211,
-    DOT = 212
+    DOT = 212,
+    LPAREN = 213,
+    RPAREN = 214
 };
 
 using namespace std;

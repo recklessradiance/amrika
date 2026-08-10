@@ -251,6 +251,16 @@ Token Lexer::getToken()
         token = Token(ctos(curChar), DOT);
     }
 
+    else if (curChar == '(')
+    { // Left paren token
+        token = Token(ctos(curChar), LPAREN);
+    }
+
+    else if (curChar == ')')
+    { // Right paren token
+        token = Token(ctos(curChar), RPAREN);
+    }
+
     else if (curChar == '\n')
     { // newline token
         token = Token(ctos(curChar), NEWLINE);
