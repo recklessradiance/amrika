@@ -48,7 +48,7 @@ Keywords and operators are enclosed in double quotations.
 ```
 program     ::=		{statement}
 
-statement   ::=		"raayi" (expression | string) nl
+statement   ::=		"rashey" (expression | string) nl
 		|	"chudu" logical "aithe" nl {statement} nl { "kaakapothe" logical "aithe" nl {statement} nl } ["lekapothe" nl {statement} nl] "." nl
 		|	"okavela" logical "ainappudu" nl {statement} nl "." nl
 		|	"anuko" ident "=" expression nl
